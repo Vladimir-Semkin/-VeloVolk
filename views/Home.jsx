@@ -8,16 +8,13 @@ module.exports = function Home({ arrMaps }) {
   return (
     <Layout>
       <Navreg />
-      {arrMaps.length ? (
-        arrMaps.map((el) => (
-          <Card
-            key={el.id}
-            map={el}
-          />
-        ))
-      ) : (
-        <div>No maps</div>
-      )}
+      <div className="d-flex justify-content-around homePage">
+        {arrMaps.length ? (
+          arrMaps.map((el) => <Card key={el.id} map={el} />)
+        ) : (
+          <div>No maps</div>
+        )}
+      </div>
     </Layout>
   );
 };

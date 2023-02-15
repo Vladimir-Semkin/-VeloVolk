@@ -5,7 +5,8 @@ module.exports = function Card({ map }) {
     <div
       id={`map${map.id}`}
       data-id={map.id}
-      style={{ width: '300px', height: '100px' }}
+      className="Flex-item"
+      style={{ width: '300px', height: '400px' }}
     >
       <p>{map.name}</p>
     </div>
