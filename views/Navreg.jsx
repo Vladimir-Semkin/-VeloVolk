@@ -2,31 +2,18 @@ const React = require('react');
 
 module.exports = function Navreg() {
   return (
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a
-          class="navbar-brand"
-          href="#"
-        >
-          Navbar
+    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
+          Velovolk!
         </a>
 
-        <div
-          class="collapse navbar-collapse"
-          id="navbarNavAltMarkup"
-        >
-          <div class="navbar-nav">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="/login"
-            >
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <a className="nav-link active" aria-current="page" href="/login">
               Регистрация
             </a>
-            <a
-              class="nav-link"
-              href="/login"
-            >
+            <a className="nav-link" href="/login">
               Вход
             </a>
           </div>
