@@ -5,7 +5,7 @@ const cors = require("cors");
 const ssr = require("../middleware/ssr");
 const sessionConfig = require("./sessionConfig");
 const corsOption = {
-  origin: ["https://api-maps.yandex.ru", "http://localhost:3000"],
+  origin: ["https://api-maps.yandex.ru"],
 };
 const getUser = require("../middleware/getUser");
 

@@ -21,5 +21,5 @@ module.exports = function Home({ arrMaps, authUser }) {
 
       {authUser && <FormForNewMap />}
     </Layout>
-  );
+  ); 
 };
