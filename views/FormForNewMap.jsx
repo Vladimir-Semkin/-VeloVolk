@@ -11,16 +11,20 @@ module.exports = function FormForNewMap() {
         justifyContent: "space-between",
       }}
     >
-      <p>Добавить маршрут</p>
-      <form id="form1" method="post" action="/api/map" className="container-sm w-50 mt-5">
+      <form
+        id="form1"
+        method="post"
+        action="/api/map"
+        className="container-sm w-50 mt-5"
+      >
         <div className="mb-3">
+          <p>Добавить маршрут</p>
           <label htmlFor="exampleInputEmail1" className="form-label">
             Откуда
           </label>
           <input
             name="pA"
             type="text"
-            
             className="form-control"
             id="pA"
             aria-describedby="emailHelp"
