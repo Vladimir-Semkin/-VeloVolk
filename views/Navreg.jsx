@@ -11,7 +11,7 @@ module.exports = function Navreg() {
         </div>
 
         <div>
-          <a  className="nav-link active" aria-current="page" href="/login">
+          <a  className="nav-link active" aria-current="page" href="/registration">
             Регистрация
           </a>
 
