@@ -64,3 +64,4 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   responseJSON.map((el) => addMap(el.pA, el.pB, `map${el.id}`));
 });
+
