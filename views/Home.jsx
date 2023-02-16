@@ -1,14 +1,15 @@
 /* eslint-disable react/prop-types */
-const React = require('react');
-const Layout = require('./Layout');
-const Navreg = require('./Navreg');
-const Card = require('./Card');
-const Navlogaut = require('./Navlogaut');
+const React = require("react");
+const Layout = require("./Layout");
+const Navreg = require("./Navreg");
+const Card = require("./Card");
+const Navlogaut = require("./Navlogaut");
+const FormForNewMap = require("./FormForNewMap");
 
 module.exports = function Home({ arrMaps, authUser }) {
   return (
     <Layout>
-      {authUser ? <Navlogaut /> : <Navreg />}
+      {authUser ? <Navlogaut authUser={authUser} /> : <Navreg />}
 
       <div className="d-flex justify-content-around homePage">
         {arrMaps.length ? (
@@ -17,6 +18,8 @@ module.exports = function Home({ arrMaps, authUser }) {
           <div>No maps</div>
         )}
       </div>
+
+      {authUser && <FormForNewMap />}
     </Layout>
   );
 };
