@@ -4,8 +4,11 @@ const { Map } = require('../../db/models');
 
 router.route('/home').get(async (req, res) => {
   const arr = await Map.findAll({ raw: true });
- 
-  res.renderComponent(Home, { arrMaps: arr });
+  const { user } = res.locals;
+
+  console.log(req.session);
+
+  res.renderComponent(Home, { arrMaps: arr, authUser: user });
 });
 
 module.exports = router;
