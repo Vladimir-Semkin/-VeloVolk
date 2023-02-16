@@ -1,10 +1,10 @@
-const router = require('express').Router();
-const Card = require('../../views/Card');
+const router = require("express").Router();
+const Card = require("../../views/Card");
 
-const { Map } = require('../../db/models');
+const { Map } = require("../../db/models");
 
 router
-  .route('/map')
+  .route("/map")
   // read
   .get((req, res) => {
     const { user } = res.locals;
@@ -16,7 +16,7 @@ router
   // create
   .post((req, res) => {
     const { name, pA, pB } = req.body;
-    console.log(name, pA, pB);
+    
 
     if (name && pA && pB && req.session.userId) {
       Map.create({ name, pA, pB, user_id: req.session.userId })
@@ -28,7 +28,7 @@ router
               { map: newMap },
               { htmlOnly: true }
             ),
-            dataId: newMap.id
+            id: newMap.id,
           })
         )
         .catch((err) => res.json({ err: err.message }));
@@ -38,7 +38,7 @@ router
   });
 
 router
-  .route('/map/:id')
+  .route("/map/:id")
 
   // update
   .put((req, res) => {
@@ -51,14 +51,15 @@ router
   })
 
   // delete
-  .delete((req, res) => {
+  .delete(async (req, res) => {
     const { id } = req.params;
 
-    User.destroy({ where: { id } }).then((deletedUser) =>
-      deletedUser
-        ? res.json({ deleted: true, id })
-        : res.status(404).json({ deleted: false, id })
-    );
+    const deletedMap = await Map.destroy({
+      where: { id, user_id: req.session.userId },
+    });
+    if (deletedMap) {
+      res.status(200).json({ deleted: true, id });
+    } else res.status(400).json({ deleted: false, id });
   });
 
 module.exports = router;
