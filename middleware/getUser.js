@@ -5,6 +5,7 @@ module.exports = async function getUser(req, res, next) {
     const user = await User.findOne({ where: { id: req.session.userId } });
 
     res.app.locals.user = user;
+    res.app.locals.email = user.email;
   }
   next();
 };
