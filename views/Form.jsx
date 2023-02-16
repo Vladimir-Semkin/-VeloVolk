@@ -1,5 +1,5 @@
-const React = require('react');
-const Layout = require('./Layout');
+const React = require("react");
+const Layout = require("./Layout");
 
 module.exports = function Form() {
   return (
@@ -12,7 +12,7 @@ module.exports = function Form() {
             </label>
             <input
               name="email"
-              etype="email"
+              type="email"
               autoFocus
               className="form-control"
               id="email"
@@ -29,8 +29,9 @@ module.exports = function Form() {
               className="form-control"
               id="password"
             />
+            <p className="errorMessage"></p>
           </div>
-          <button id='btn' type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </form>

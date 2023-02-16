@@ -1,13 +1,14 @@
-const btn = document.querySelector('#btn');
-const email = document.querySelector('#email');
-const password = document.querySelector('#password');
+const btn = document.querySelector("#btn");
+const email = document.querySelector("#email");
+const password = document.querySelector("#password");
+const errorMessage = document.querySelector(".errorMessage");
 
 if (btn) {
-  btn.addEventListener('click', async (event) => {
+  btn.addEventListener("click", async (event) => {
     event.preventDefault();
-    const response = await fetch('/login', {
-      method: 'post',
-      headers: { 'Content-Type': 'Application/json' },
+    const response = await fetch("/login", {
+      method: "post",
+      headers: { "Content-Type": "Application/json" },
       body: JSON.stringify({
         email: email.value,
         password: password.value,
@@ -16,18 +17,11 @@ if (btn) {
     const responseJson = await response.json();
     console.log(responseJson.message);
 
-    if (responseJson.message === 'true') {
-      window.location.assign('/home');
-    }
+    if (responseJson.message === "true") {
+      window.location.assign("/home");
+    } else errorMessage.innerText = responseJson.message;
   });
 }
-
-
-
-
-
-
-
 
 function addMap(a, b, id) {
   function init() {
@@ -44,7 +38,7 @@ function addMap(a, b, id) {
         referencePoints: [pointA, pointB],
         params: {
           // Тип маршрутизации - пешеходная маршрутизация.
-          routingMode: 'pedestrian',
+          routingMode: "pedestrian",
         },
       },
       {
@@ -54,14 +48,14 @@ function addMap(a, b, id) {
     );
     // Создаем кнопку.
     const changePointsButton = new ymaps.control.Button({
-      data: { content: 'Поменять местами точки А и В' },
+      data: { content: "Поменять местами точки А и В" },
       options: { selectOnClick: true },
     });
     // Объявляем обработчики для кнопки.
-    changePointsButton.events.add('select', () => {
+    changePointsButton.events.add("select", () => {
       multiRoute.model.setReferencePoints([pointB, pointA]);
     });
-    changePointsButton.events.add('deselect', () => {
+    changePointsButton.events.add("deselect", () => {
       multiRoute.model.setReferencePoints([pointA, pointB]);
     });
     // Создаем карту с добавленной на нее кнопкой.
@@ -82,21 +76,17 @@ function addMap(a, b, id) {
   ymaps.ready(init);
 }
 
-// addMap('Ставрополь', 'Невинномысск', 'map3');
-
-window.addEventListener('DOMContentLoaded', async () => {
-  const response = await fetch('/coordinats');
+window.addEventListener("DOMContentLoaded", async () => {
+  const response = await fetch("/coordinats");
   const responseJSON = await response.json();
- 
 
   responseJSON.map((el) => addMap(el.pA, el.pB, `map${el.id}`));
 });
 
 // async function addMap1() {
-//   const response = await fetch('/coordinats');
+//   const response = await fetch("/coordinats");
 //   const responseJSON = await response.json();
- 
-
+//   console.log(responseJSON);
 //   responseJSON.map((el) => addMap(el.pA, el.pB, `map${el.id}`));
 // }
-// addMap1()
+// addMap1();
