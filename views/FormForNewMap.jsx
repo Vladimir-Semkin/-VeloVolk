@@ -12,7 +12,7 @@ module.exports = function FormForNewMap() {
       }}
     >
       <p>Добавить маршрут</p>
-      <form id="formAdd" className="container-sm w-50 mt-5">
+      <form id="form1" method="post" action="/api/map" className="container-sm w-50 mt-5">
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Откуда
@@ -20,7 +20,7 @@ module.exports = function FormForNewMap() {
           <input
             name="pA"
             type="text"
-            autoFocus
+            
             className="form-control"
             id="pA"
             aria-describedby="emailHelp"

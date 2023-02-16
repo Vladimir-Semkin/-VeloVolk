@@ -5,7 +5,7 @@ module.exports = function Navlogaut({ authUser }) {
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <div>
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/home">
             Velovolk!🚲🐺
           </a>
         </div>
