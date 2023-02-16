@@ -31,7 +31,7 @@ module.exports = function Form() {
             />
             <p className="errorMessage"></p>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button id="btn" type="submit" className="btn btn-primary">
             Submit
           </button>
         </form>
