@@ -1,5 +1,3 @@
-const homePage = document.querySelector('.homePage');
-
 function addMap(a, b, id) {
   function init() {
     // Задаём точки мультимаршрута.
@@ -54,8 +52,6 @@ function addMap(a, b, id) {
 }
 
 // addMap('Ставрополь', 'Невинномысск', 'map3');
-
-console.log(homePage);
 
 window.addEventListener('DOMContentLoaded', async () => {
   const response = await fetch('/coordinats');
