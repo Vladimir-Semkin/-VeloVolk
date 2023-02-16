@@ -18,7 +18,7 @@ module.exports = function Layout({ children }) {
           src="https://api-maps.yandex.ru/2.1/?apikey=a62479e1-a26e-482b-ab73-e983bbd89896&lang=ru_RU"
           type="text/javascript"
         />
-        <title>VeloVolk</title>
+        <title>VeloVolk🚲</title>
         <link
           rel="stylesheet"
           href="/css/bootstrap.min.css"
@@ -34,6 +34,10 @@ module.exports = function Layout({ children }) {
         <script
           defer
           src="/js/bootstrap.bundle.min.js"
+        />
+        <script
+          defer
+          src="/js/logorego.js"
         />
       </head>
       <body>{children}</body>

@@ -6,16 +6,16 @@ module.exports = function Navreg() {
       <div className="container-fluid">
         <div>
           <a className="navbar-brand" href="#">
-            Velovolk!
+            Velovolk! 🚲🐺
           </a>
         </div>
 
         <div>
-          <a className="nav-link active" aria-current="page" href="/login">
+          <a  className="nav-link active" aria-current="page" href="/login">
             Регистрация
           </a>
 
-          <a className="nav-link active" href="/login">
+          <a  className="nav-link active" href="/login">
             Вход
           </a>
         </div>

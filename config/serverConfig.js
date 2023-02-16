@@ -5,6 +5,8 @@ const cors = require('cors');
 const ssr = require('../middleware/ssr');
 const sessionConfig = require('./sessionConfig');
 const corsOption = { origin: ['https://api-maps.yandex.ru'] };
+const getUser = require('../middleware/getUser');
+
 const config = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -13,5 +15,6 @@ const config = (app) => {
   app.use(session(sessionConfig));
   app.use(ssr);
   app.use(cors(corsOption));
+  app.use(getUser);
 };
 module.exports = config;

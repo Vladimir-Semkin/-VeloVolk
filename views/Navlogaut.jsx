@@ -1,12 +1,12 @@
 const React = require('react');
 
-module.exports = function Navreg() {
+module.exports = function Navlogaut() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <div>
           <a className="navbar-brand" href="#">
-            Velovolk!
+            Velovolk!🚲🐺
           </a>
         </div>
 

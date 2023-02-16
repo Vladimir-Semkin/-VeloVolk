@@ -30,7 +30,7 @@ module.exports = function Form() {
               id="password"
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button id='btn' type="submit" className="btn btn-primary">
             Submit
           </button>
         </form>

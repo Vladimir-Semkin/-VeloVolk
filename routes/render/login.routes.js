@@ -12,6 +12,7 @@ router
     const { email, password } = req.body;
     if (email && password) {
       const candidate = await User.findOne({ where: { email }, raw: true });
+      console.log(candidate);
       if (candidate) {
         if (candidate && (await bcrypt.compare(password, candidate.password))) {
           req.session.userId = candidate.id;
