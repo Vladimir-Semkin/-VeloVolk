@@ -8,7 +8,7 @@ module.exports = function Form() {
         <form id="form" className="container-sm w-50 mt-5">
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
-              Email address
+              Емаил
             </label>
             <input
               name="email"
@@ -21,7 +21,7 @@ module.exports = function Form() {
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label">
-              Password
+              Пасворд
             </label>
             <input
               name="password"
@@ -31,8 +31,8 @@ module.exports = function Form() {
             />
             <p className="errorMessage"></p>
           </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
+          <button id="btn" type="submit" className="btn btn-primary">
+            Сабмит
           </button>
         </form>
       </div>

@@ -23,7 +23,7 @@ if (btn) {
   });
 }
 
-function addMap(a, b, id) {
+ function addMap(a, b, id) {
   function init() {
     // Задаём точки мультимаршрута.
     // const pointA = [55.749, 37.524];
@@ -90,3 +90,35 @@ window.addEventListener("DOMContentLoaded", async () => {
 //   responseJSON.map((el) => addMap(el.pA, el.pB, `map${el.id}`));
 // }
 // addMap1();
+
+const form1 = document.querySelector('#form1');
+const homePage=document.querySelector('.homePage');
+
+if (form1) {
+  form1.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const { name, pA, pB } = event.target;
+
+    const response = await fetch('/api/map', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+      body: JSON.stringify({
+        name: name.value,
+        pA: pA.value,
+        pB: pB.value,
+      }),
+    });
+
+    const { html } = await response.json();
+    const { dataId } = await response.json()
+
+    homePage.insertAdjacentHTML('beforeend', html);
+
+    addMap(pA, pB, `map${dataId}` )
+
+    event.target.reset();
+  });
+}
