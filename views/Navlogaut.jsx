@@ -1,6 +1,6 @@
 const React = require('react');
 
-module.exports = function Navlogaut() {
+module.exports = function Navlogaut({authUser}) {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">

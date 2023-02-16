@@ -27,7 +27,7 @@ module.exports = function Card({ map }) {
           <btn>Добавить себе</btn>
         </div>
         <div>
-          <btn>Изменить маршрут</btn>
+          {/* <btn>Изменить маршрут</btn> */}
         </div>
       </div>
     </div>
