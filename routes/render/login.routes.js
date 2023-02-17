@@ -36,14 +36,13 @@ router
   })
   .post(async (req, res) => {
     const { email, password } = req.body;
+    console.log(req.body);
 
     if (email && password) {
       const candidate = await User.findOne({ where: { email } });
 
       if (candidate) {
-        res
-          .status(400)
-          .json({ message: "Заняяяяято!", created: false });
+        res.status(400).json({ message: "Заняяяяято!", created: false });
       } else {
         const hashPassword = await bcrypt.hash(password, 10);
         const newUser = await User.create({ email, password: hashPassword });
@@ -51,7 +50,7 @@ router
         res.status(201).json({ data: newUser, message: "true" });
       }
     } else {
-      res.status(400).json({message: 'Ты кого хочешь обмануть, пес?'})
+      res.status(400).json({ message: "Ты кого хочешь обмануть, пес?" });
     }
   });
 
