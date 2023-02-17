@@ -1,32 +1,48 @@
-const React = require("react");
+const React = require('react');
 
-module.exports = function Card({ map }) {
+module.exports = function Card({ map, authUser }) {
   return (
-    <div data-cardId={map.id} className="cardMap">
+    <div
+      data-cardId={map.id}
+      className="cardMap"
+    >
       <div
         id={`map${map.id}`}
         data-id={map.id}
         className="Flex-item"
-        style={{ width: "320px", height: "400px" }}
+        style={{ width: '320px', height: '400px' }}
       >
         <p>{map.name}</p>
       </div>
       <div
         style={{
-          display: "flex",
-          margin: "40px 0px",
-          fontSize: "14px",
+          display: 'flex',
+          margin: '40px 0px',
+          fontSize: '14px',
 
-          justifyContent: "space-between",
+          justifyContent: 'space-around',
         }}
       >
-        <button data-id={map.id} type="button" className="delete">
-          Удалить
-        </button>
+        {authUser?.id === map.user_id && (
+          <>
+            <button
+              data-id={map.id}
+              type="button"
+              className="delete btn btn-success"
+            >
+              Удалить
+            </button>
 
-        <button type="button">Добавить себе</button>
-
-        <button type="button">Изменить маршрут</button>
+            <button
+              id="changeBtn"
+              data-id={map.id}
+              className="change btn btn-success"
+              type="button"
+            >
+              Изменить
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
