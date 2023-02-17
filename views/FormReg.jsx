@@ -5,7 +5,7 @@ module.exports = function Form() {
   return (
     <Layout>
       <div className="d-flex justify-content-center">
-        <form id="form" className="container-sm w-50 mt-5">
+        <form id="formReg" className="container-sm w-50 mt-5">
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Емаил
