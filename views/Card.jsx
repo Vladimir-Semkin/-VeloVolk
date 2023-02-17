@@ -12,7 +12,7 @@ module.exports = function Card({ map, authUser }) {
         className="Flex-item"
         style={{ width: '320px', height: '400px' }}
       >
-        <p>{map.name}</p>
+        <h2 style={{ fontFamily: "cursive" }}>{map.name}</h2>
       </div>
       <div
         style={{
