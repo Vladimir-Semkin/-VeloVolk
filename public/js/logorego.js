@@ -10,7 +10,7 @@ const formReg = document.querySelector('#formReg');
 const formLog = document.querySelector('#formLog');
 
 if (formLog) {
-  formLog.addEventListener('click', async (event) => {
+  formLog.addEventListener('submit', async (event) => {
     event.preventDefault();
     const response = await fetch('/login', {
       method: 'post',
