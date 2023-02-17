@@ -10,9 +10,9 @@ module.exports = function Card({ map, authUser }) {
         id={`map${map.id}`}
         data-id={map.id}
         className="Flex-item"
-        style={{ width: '320px', height: '400px' }}
+        style={{ width: '320px', height: '400px'}}
       >
-        <h2 style={{ fontFamily: "cursive" }}>{map.name}</h2>
+        <h2 style={{ fontFamily: "cursive", textAlign:'center', color:'white', textShadow:'darkblue 1px 0 10px' }}>{map.name}</h2>
       </div>
       <div
         style={{
@@ -26,9 +26,10 @@ module.exports = function Card({ map, authUser }) {
         {authUser?.id === map.user_id && (
           <>
             <button
+            id='deleteBtn'
               data-id={map.id}
               type="button"
-              className="delete btn btn-success"
+              className="delete btn "
             >
               Удалить
             </button>
@@ -36,7 +37,7 @@ module.exports = function Card({ map, authUser }) {
             <button
               id="changeBtn"
               data-id={map.id}
-              className="change btn btn-success"
+              className="change btn "
               type="button"
             >
               Изменить

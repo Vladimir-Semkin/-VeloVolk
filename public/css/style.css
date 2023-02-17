@@ -1,5 +1,8 @@
 body {
-  background-color: rgb(147, 168, 52);
+  /* background-color: rgb(147, 168, 52); */
+  background: url("https://cs11.pikabu.ru/post_img/big/2018/07/24/7/1532429982199169912.jpg")
+    no-repeat;
+    background-size: cover;
 }
 
 .homePage {
@@ -20,4 +23,27 @@ footer{
   flex: 0 0 auto;
   height: 50px;
  
+}
+.mb-3 p {
+  font-family: "Raleway", sans-serif;
+  font-size: 25px;
+  color: #fff;
+}
+
+.mb-3 label {
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  color: #fff;
+}
+
+.navbar {
+  background-color:rgb(225, 183, 99);
+}
+
+
+#changeBtn{
+  background-color: rgb(251, 206, 82);
+}
+#deleteBtn{
+  background-color: rgb(251, 206, 82);
 }

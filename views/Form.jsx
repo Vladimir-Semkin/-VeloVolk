@@ -31,9 +31,14 @@ module.exports = function Form() {
             />
             <p className="errorMessage"></p>
           </div>
-          <button id="btn" type="submit" className="btn btn-primary">
+          <div style={{ display:'flex', justifyContent:'space-between' }}>
+          <button id="btnReg" type="submit" className="btn btn-primary">
             Сабмит
           </button>
+          <button id="backHome" className="btn btn-primary">БэкХоум</button>
+        
+          
+          </div>
         </form>
       </div>
     </Layout>

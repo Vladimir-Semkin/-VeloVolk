@@ -46,7 +46,7 @@ module.exports = function Layout({ children }) {
           <div className="content"> {children} </div>
           <footer >
             <a
-              style={{ fontSize: '20px' }}
+              style={{ fontSize: '20px', color:'white' }}
               href="https://kudago.com/spb/list/luchshie-velosipednye-marshruty-peterburga/"
             >
               Нормальные вело-маршруты

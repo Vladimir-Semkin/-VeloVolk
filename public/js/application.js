@@ -6,6 +6,7 @@ const mapAddUra = document.querySelector('.mapAddUra');
 const changePA = document.querySelector('#changePA');
 const changePB = document.querySelector('#changePB');
 const changeName = document.querySelector('#changeName');
+const backHome=document.getElementById('backHome')
 
 function addMap(a, b, id) {
   function init() {
@@ -158,4 +159,9 @@ if (formChange) {
       console.log(data);
     }
   });
+}
+if(backHome){
+  backHome.addEventListener('click', (event)=>{
+    window.location.assign('/home')
+  })
 }

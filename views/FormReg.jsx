@@ -35,7 +35,8 @@ module.exports = function Form() {
           <button id="btnReg" type="submit" className="btn btn-primary">
             Сабмит
           </button>
-          <div style={{ width: '70px', height: '30px', backgroundColor:'blue', borderRadius: '5px'  }}><a  href='/home' style={{ color:'white' }}>Хоум</a></div>
+          <button id="backHome" className="btn btn-primary">БэкХоум</button>
+        
           
           </div>
         </form>
