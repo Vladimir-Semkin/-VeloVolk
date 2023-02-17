@@ -1,10 +1,10 @@
-const router = require("express").Router();
-const Card = require("../../views/Card");
+const router = require('express').Router();
+const Card = require('../../views/Card');
 
-const { Map } = require("../../db/models");
+const { Map } = require('../../db/models');
 
 router
-  .route("/map")
+  .route('/map')
   // read
   .get((req, res) => {
     const { user } = res.locals;
@@ -16,8 +16,7 @@ router
   // create
   .post((req, res) => {
     const { name, pA, pB } = req.body;
-    
-
+    const { user } = res.locals;
     if (name && pA && pB && req.session.userId) {
       Map.create({ name, pA, pB, user_id: req.session.userId })
         .then((newMap) =>
@@ -25,7 +24,7 @@ router
             data: newMap,
             html: res.renderComponent(
               Card,
-              { map: newMap },
+              { map: newMap, authUser: user },
               { htmlOnly: true }
             ),
             id: newMap.id,
@@ -38,15 +37,29 @@ router
   });
 
 router
-  .route("/map/:id")
+  .route('/map/:id')
 
   // update
   .put((req, res) => {
     const { id } = req.params;
-    const { name, phone } = req.body;
+    const { name, pA, pB } = req.body;
 
-    User.update({ name, phone }, { where: { id }, raw: true, returning: true })
-      .then(([_, [updatedUser]]) => res.json(updatedUser))
+    Map.update(
+      { name, pA, pB },
+      { where: { id, user_id: req.session.userId }, raw: true, returning: true }
+    )
+      .then(([_, [updatedMap]]) => {
+        if (updatedMap) {
+          res.json({
+            map: updatedMap,
+            html: res.renderComponent(
+              Card,
+              { map: updatedMap },
+              { htmlOnly: true }
+            ),
+          });
+        } else res.json({ message: false });
+      })
       .catch((err) => res.json({ err: err.message }));
   })
 

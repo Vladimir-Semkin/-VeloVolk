@@ -40,11 +40,13 @@ module.exports = function FormForNewMap() {
           <label htmlFor="exampleInputPassword1" className="form-label">
             Название маршрута
           </label>
-          <input name="name" type="text" className="form-control" id="name" />
+          <input name="nameNewMap" type="text" className="form-control" id="name" />
         </div>
+        <p className="mapAddUra"></p>
         <button id="btn1" type="submit" className="btn btn-primary">
           Создать маршрут!
         </button>
+        
       </form>
     </div>
   );

@@ -1,4 +1,11 @@
-const homePage = document.querySelector(".homePage");
+const homePage = document.querySelector('.homePage');
+
+const formChange = document.querySelector('#formChange');
+const mapAddUra = document.querySelector('.mapAddUra');
+
+const changePA = document.querySelector('#changePA');
+const changePB = document.querySelector('#changePB');
+const changeName = document.querySelector('#changeName');
 
 function addMap(a, b, id) {
   function init() {
@@ -15,7 +22,7 @@ function addMap(a, b, id) {
         referencePoints: [pointA, pointB],
         params: {
           // Тип маршрутизации - пешеходная маршрутизация.
-          routingMode: "pedestrian",
+          routingMode: 'pedestrian',
         },
       },
       {
@@ -25,14 +32,14 @@ function addMap(a, b, id) {
     );
     // Создаем кнопку.
     const changePointsButton = new ymaps.control.Button({
-      data: { content: "Поменять местами точки А и В" },
+      data: { content: 'Поменять местами точки А и В' },
       options: { selectOnClick: true },
     });
     // Объявляем обработчики для кнопки.
-    changePointsButton.events.add("select", () => {
+    changePointsButton.events.add('select', () => {
       multiRoute.model.setReferencePoints([pointB, pointA]);
     });
-    changePointsButton.events.add("deselect", () => {
+    changePointsButton.events.add('deselect', () => {
       multiRoute.model.setReferencePoints([pointA, pointB]);
     });
     // Создаем карту с добавленной на нее кнопкой.
@@ -53,8 +60,8 @@ function addMap(a, b, id) {
   ymaps.ready(init);
 }
 
-window.addEventListener("DOMContentLoaded", async () => {
-  const response = await fetch("/coordinats");
+window.addEventListener('DOMContentLoaded', async () => {
+  const response = await fetch('/coordinats');
   const responseJSON = await response.json();
 
   responseJSON.map((el) => addMap(el.pA, el.pB, `map${el.id}`));
@@ -68,49 +75,87 @@ window.addEventListener("DOMContentLoaded", async () => {
 // }
 // addMap1();
 
-const form1 = document.querySelector("#form1");
+const form1 = document.querySelector('#form1');
 
 if (form1) {
-  form1.addEventListener("submit", async (event) => {
+  form1.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const { name, pA, pB } = event.target;
+    const { nameNewMap, pA, pB } = event.target;
 
-    const response = await fetch("/api/map", {
-      method: "post",
+    const response = await fetch('/api/map', {
+      method: 'post',
       headers: {
-        "Content-Type": "Application/json",
+        'Content-Type': 'Application/json',
       },
       body: JSON.stringify({
-        name: name.value,
+        name: nameNewMap.value,
         pA: pA.value,
         pB: pB.value,
       }),
     });
 
     const data = await response.json();
-   
-    homePage.insertAdjacentHTML("beforeend", data.html);
 
-    addMap(pA, pB, `map${data.id}`);
+    addMap(pA.value, pB.value, `map${data.id}`);
+    homePage.insertAdjacentHTML('beforeend', data.html);
+    mapAddUra.innerText = 'Маршрут добавлен';
 
-    event.target.reset();
+    
   });
 }
 
 if (homePage) {
-  homePage.addEventListener("click", async (event) => {
-    event.preventDefault();
-    if (event.target.classList.contains("delete")) {
+  homePage.addEventListener('click', async (event) => {
+    if (event.target.classList.contains('delete')) {
       //   console.log(event.target.dataset.id);
       const response = await fetch(`/api/map/${event.target.dataset.id}`, {
-        method: "delete",
+        method: 'delete',
       });
       const responseJSON = await response.json();
       if (responseJSON.deleted) {
-        event.target.closest(".cardMap").remove();
-        window.location.href = "http://localhost:3000/home";
+        event.target.closest('.cardMap').remove();
+        // window.location.href = "http://localhost:3000/home";
       }
+    }
+  });
+}
+
+if (homePage) {
+  homePage.addEventListener('click', (event) => {
+    homePage.addEventListener('click', async (event) => {
+      if (event.target.classList.contains('change')) {
+        console.log(event.target);
+        window.location.assign(`/changemap/${event.target.dataset.id}`);
+      }
+    });
+  });
+}
+
+if (formChange) {
+  formChange.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const smotriVova = window.location.href.split('/');
+    console.log(smotriVova[smotriVova.length - 1]);
+
+    const response = await fetch(
+      `/api/map/${smotriVova[smotriVova.length - 1]}`,
+      {
+        method: 'put',
+        headers: {
+          'Content-Type': 'Application/json',
+        },
+        body: JSON.stringify({
+          name: changeName.value,
+          pA: changePA.value,
+          pB: changePB.value,
+        }),
+      }
+    );
+    const data = await response.json();
+    if (data.map) {
+      window.location.assign('/home');
+      console.log(data);
     }
   });
 }
