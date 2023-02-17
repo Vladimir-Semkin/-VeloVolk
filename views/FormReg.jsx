@@ -31,9 +31,13 @@ module.exports = function Form() {
             />
             <p className="errorMessageReg"></p>
           </div>
+          <div style={{ display:'flex', justifyContent:'space-between' }}>
           <button id="btnReg" type="submit" className="btn btn-primary">
             Сабмит
           </button>
+          <div style={{ width: '70px', height: '30px', backgroundColor:'blue', borderRadius: '5px'  }}><a  href='/home' style={{ color:'white' }}>Хоум</a></div>
+          
+          </div>
         </form>
       </div>
     </Layout>

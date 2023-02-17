@@ -19,6 +19,9 @@ module.exports = function Layout({ children }) {
         <script defer src="/js/logorego.js" />
       </head>
       <body>{children}</body>
+      <footer>
+        <a style={{ fontSize: '20px' }} href="https://kudago.com/spb/list/luchshie-velosipednye-marshruty-peterburga/" >Нормальные вело-маршруты</a>
+      </footer>
     </html>
   );
 };
