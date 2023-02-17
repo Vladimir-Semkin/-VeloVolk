@@ -2,7 +2,7 @@ const React = require("react");
 
 module.exports = function Navlogaut({ authUser }) {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
         <div>
           <a className="navbar-brand" href="/home">

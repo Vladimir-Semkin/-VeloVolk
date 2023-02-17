@@ -16,8 +16,7 @@ router
   // create
   .post((req, res) => {
     const { name, pA, pB } = req.body;
-    console.log(name, pA, pB);
-
+    const { user } = res.locals;
     if (name && pA && pB && req.session.userId) {
       Map.create({ name, pA, pB, user_id: req.session.userId })
         .then((newMap) =>
@@ -25,10 +24,10 @@ router
             data: newMap,
             html: res.renderComponent(
               Card,
-              { map: newMap },
+              { map: newMap, authUser: user },
               { htmlOnly: true }
             ),
-            dataId: newMap.id
+            id: newMap.id,
           })
         )
         .catch((err) => res.json({ err: err.message }));
@@ -43,22 +42,37 @@ router
   // update
   .put((req, res) => {
     const { id } = req.params;
-    const { name, phone } = req.body;
+    const { name, pA, pB } = req.body;
 
-    User.update({ name, phone }, { where: { id }, raw: true, returning: true })
-      .then(([_, [updatedUser]]) => res.json(updatedUser))
+    Map.update(
+      { name, pA, pB },
+      { where: { id, user_id: req.session.userId }, raw: true, returning: true }
+    )
+      .then(([_, [updatedMap]]) => {
+        if (updatedMap) {
+          res.json({
+            map: updatedMap,
+            html: res.renderComponent(
+              Card,
+              { map: updatedMap },
+              { htmlOnly: true }
+            ),
+          });
+        } else res.json({ message: false });
+      })
       .catch((err) => res.json({ err: err.message }));
   })
 
   // delete
-  .delete((req, res) => {
+  .delete(async (req, res) => {
     const { id } = req.params;
 
-    User.destroy({ where: { id } }).then((deletedUser) =>
-      deletedUser
-        ? res.json({ deleted: true, id })
-        : res.status(404).json({ deleted: false, id })
-    );
+    const deletedMap = await Map.destroy({
+      where: { id, user_id: req.session.userId },
+    });
+    if (deletedMap) {
+      res.status(200).json({ deleted: true, id });
+    } else res.status(400).json({ deleted: false, id });
   });
 
 module.exports = router;

@@ -2,7 +2,7 @@ const React = require('react');
 
 module.exports = function Navreg() {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
         <div>
           <a className="navbar-brand" href="/home">
@@ -11,7 +11,7 @@ module.exports = function Navreg() {
         </div>
 
         <div>
-          <a  className="nav-link active" aria-current="page" href="/login">
+          <a  className="nav-link active" aria-current="page" href="/registration">
             Регистрация
           </a>
 
